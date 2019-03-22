@@ -63,4 +63,13 @@ describe Admin::CategoriesController do
     assert_raise(ActiveRecord::RecordNotFound) { Category.find(test_id) }
   end
   
+  describe "test_add_new_category" do
+
+    it "should create new category" do
+      post :new, :category => {:name => "category_name", :keywords => "keywrd"}
+      @category_select = Category.find_by_name("category_name")
+      expect(@category_select).not_to be_nil
+    end
+end
+  
 end
